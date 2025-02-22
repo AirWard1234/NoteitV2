@@ -1,12 +1,15 @@
 import React, { useContext, useState } from "react";
 import "./Sidebar.css";
 import { assets } from "../../assets/assets";
-import { Context } from "../../context/Context";
 
 const Sidebar = () => {
   const [extend, setExtend] = useState(false);
 
-  const { onSent, prevPrompts, setRecentPrompt, newChat } = useContext(Context);
+
+  const onSent = async (prompt) => console.log("Sent:", prompt);
+  const prevPrompts = []; // Provide a default value
+  const setRecentPrompt = (prompt) => console.log("Recent prompt:", prompt);
+  const newChat = () => console.log("New chat started");
 
   const loadPrompt = async (prompt) => {
     setRecentPrompt(prompt);

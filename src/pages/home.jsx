@@ -1,8 +1,8 @@
 import React from "react";
-import Navbar from "../conponents/Home/Navbar";
-import Hero from "../conponents/Home/Hero";
+import Navbar from "../components/Home/Navbar";
+import Hero from "../components/Home/Hero";
 import "./home.css";
-import Desc from "../conponents/Home/Desc";
+import Desc from "../components/Home/Desc";
 
 export function Home() {
   return (
