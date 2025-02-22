@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom';
 import "./Main.css";
 import { assets } from "../../assets/assets";
+import { useNavigate } from 'react-router-dom'
 
 const Main = () => {
+  const [file, setFile] = useState(''); 
+  const navigate = useNavigate(); // Initialize navigation
+
+useEffect(() => {
+    if (file) {
+      console.log(file)
+      console.log(JSON.stringify(file))
+      localStorage.setItem('file', file.name); // Store file
+      navigate("/live-transcription"); // Navigate after state updates
+    }
+  }, [file, navigate]); // Only runs when `file` changes
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]); // Updates state (but doesn't navigate immediately)
+  };
   return (
     <div className="main">
         <div className="nav">
@@ -25,7 +42,7 @@ const Main = () => {
                             <p>Drag or upload any file and we will do the dirty work</p>
                         </div>
                     </div>
-                    <input type='file' className='file-uploader'></input>
+                    <input onChange={handleFileChange} type='file' className='file-uploader' />
                 </div>
             </div>
 

@@ -2,14 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import LiveTranscription from './pages/live-transcription';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import reportWebVitals from './reportWebVitals';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="/live-transcription" element={<LiveTranscription/>} />
     </Routes>
   </BrowserRouter>
 );
