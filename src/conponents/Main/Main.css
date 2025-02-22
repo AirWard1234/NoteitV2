@@ -1,0 +1,211 @@
+.main {
+    max-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.main .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 15px;
+    height: 8%;
+}
+
+.main .nav .side {
+    display: flex;
+    width: 10%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.side .live {
+    background-color: rgb(244, 62, 62);
+    color: white;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+}
+.live:hover {
+    background-color: rgb(231, 2, 2);
+    cursor: pointer;
+    transition: ease-in-out;
+}
+
+.main .nav .logo {
+    font-size: x-large;
+}
+
+.main .nav img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dropbox {
+    width: 95%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.file-uploader{
+    width: 150%;
+    height: 100%;
+    transform: translateY(-360px);
+    border-radius: 20pxs;
+    opacity: 0;
+    
+}
+
+.uploader {
+    width: 100%;
+    height: 100%;
+    background-color: #f0f4f9;
+    border: 1px black solid;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-uploader:hover {
+    cursor:grabbing;
+}
+
+.uploader-content {
+    pointer-events: none;
+    width: 40%;
+    height: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploader-content img {
+    width: 15%;
+}
+
+.dropbox .dropbox-holder{
+    width: 95%;
+    height: 95%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.history-container {
+    width: 95%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.history-container .history {
+    width: 95%;
+    height: 90%;
+    border-radius: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.history-lable {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    font-weight: 500;
+    box-shadow: rgba(0, 0, 0, 0.15)  0 2.6px;
+}
+
+.history-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.catagory {
+    width: 22%;
+    height: 76%;
+    margin-top: 15px;
+    border-radius: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 5px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.subject {
+    width: 100%;
+    height: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    font-weight: 500;
+    box-shadow: rgba(0, 0, 0, 0.15)  0 2.6px;
+}
+.subject img {
+    margin-left: 5px;
+    width: 22px;
+    height: 22px;
+}
+
+.catagory .note {
+    width: 100%;
+    height: 17%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.note img {
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+.catagory .note:hover {
+    background-color: rgba(211, 211, 211, 0.996);
+    cursor: pointer;
+}
+.all-notes{
+    background-color: rgba(234, 232, 232, 0.996);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    display: flex;
+    width: 8%;
+    justify-content: space-evenly;
+}
+
+.all-notes:hover {
+    background-color: rgba(208, 204, 204, 0.996);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: ease-in-out;
+}
+
+.all-notes img{
+    width: 20px;
+}
