@@ -1,24 +1,50 @@
-import React, { useState, useEffect } from 'react'
-import { Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Main.css";
 import { assets } from "../../assets/assets";
-import { useNavigate } from 'react-router-dom'
 
 const Main = () => {
-  const [file, setFile] = useState(''); 
+  const [file, setFile] = useState(null); 
   const navigate = useNavigate(); // Initialize navigation
 
-useEffect(() => {
+  // Effect hook to store the file in localStorage and navigate once the file is set
+  useEffect(() => {
     if (file) {
-      console.log(file)
-      console.log(JSON.stringify(file))
-      localStorage.setItem('file', file.name); // Store file
-      navigate("/live-transcription"); // Navigate after state updates
+      console.log(file);
+      // Store file metadata (not actual file data) in localStorage
+      localStorage.setItem("file", JSON.stringify({ name: file.name, type: file.type }));
+      navigate("/live-transcription"); // Navigate to live-transcription page after file is selected
     }
-  }, [file, navigate]); // Only runs when `file` changes
+  }, [file, navigate]); // Dependency on file
 
+  // Handle file selection
   const handleFileChange = (event) => {
-    setFile(event.target.files[0]); // Updates state (but doesn't navigate immediately)
+    const selectedFile = event.target.files[0];
+    console.log(selectedFile)
+    setFile(selectedFile); // Update state with the selected file
+    handleUpload(selectedFile); // Upload the file to backend
+  };
+
+  // Function to upload file to the backend
+  const handleUpload = async (selectedFile) => {
+    if (!selectedFile) return;
+
+    const formData = new FormData();
+    formData.append("file", selectedFile); // Append the selected file to FormData
+
+    try {
+      // Replace with your backend endpoint
+      const response = await fetch("http://localhost:5000/uploadFile", {
+        method: "POST",
+        mode: "no-cors",
+        body: formData, // Send the file to the server as form-data
+      });
+
+      const data = await response.json(); // Assuming the server responds with JSON
+      console.log("File uploaded successfully:", data);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
   };
   return (
     <div className="main">

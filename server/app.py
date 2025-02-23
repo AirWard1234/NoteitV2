@@ -12,6 +12,42 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
+# Upload folder configuration
+app.config['UPLOAD_FOLDER'] = './upload/'
+
+# Apply CORS after every request to set headers
+@app.after_request
+def apply_cors(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    return response
+
+@app.route('/uploadFile', methods=["POST", "OPTIONS"])
+def upload_file():
+    if request.method == 'OPTIONS':
+        return '', 200
+    
+    if request.method == 'POST':
+        # Check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        
+        file = request.files['file']
+        # If no file selected
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        
+        if file:
+            filename = secure_filename(file.filename)
+            print("!IMPORTANT", file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            transcript_text = returnTranscript()  # Use the filename here to process the uploaded file
+            
+            return jsonify({"message": "File uploaded successfully", "filename": filename, "transcript": transcript_text})
+
 @app.route("/transcriptvideo", methods=['OPTIONS'])
 def options():
     return '', 200
@@ -20,12 +56,6 @@ def options():
 def options2():
     return '', 200
 
-@app.after_request
-def apply_cors(response):
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
-    return response
 GEMINI_API_KEY = "AIzaSyCMktM6acrHtvB0gOa3zPXNjcfzFYEtGO4"
 genai.configure(api_key=GEMINI_API_KEY)
 
@@ -59,7 +89,7 @@ async def summarize_text(transcript_text):
 @app.route("/transcriptVideo", methods=['GET'])
 def returnTranscript():
     try:
-        video = mp.VideoFileClip("./geeks.mp4")  # Load the video
+        video = mp.VideoFileClip("./upload/" + secure_filename(file.filename))  # Load the video
         audio_file = video.audio
         audio_file.write_audiofile("geeksforgeeks.wav")  # Extract audio
 
@@ -75,9 +105,10 @@ def returnTranscript():
 
         print("\nThe resultant text from video is:\n", text)
 
-        return jsonify({"text": text})
+        return text
 
     except Exception as e:
+        print("ERRRRRR")
         return jsonify({"error": str(e)}), 400
 
 @app.route("/transcriptYT", methods=['POST'])
