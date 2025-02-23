@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import File from "../components/File/File";
 
  const LiveTranscription = () => {
   const [file, setFile] = useState("");
@@ -7,10 +8,9 @@ import React, { useState, useEffect } from 'react'
   }, [])
   return (
     <>
-      LIVE TRANSCRIPTIONS
-      <a href="/"> Back </a>
-      {file}
-      {}
+      <File />
+      {/* {file}
+      {} */}
     </>
   )
 }

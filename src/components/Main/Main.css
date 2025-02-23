@@ -1,3 +1,8 @@
+a{
+    text-decoration: none;
+    color: none;
+    margin: 0;
+}
 .main {
     max-height: 100vh;
     width: 100%;
@@ -123,14 +128,21 @@
 }
 
 .history-lable {
-    width: 100%;
-    height: 15%;
+    width: 95.3%;
+    height: 3%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px;
     font-weight: 500;
     box-shadow: rgba(0, 0, 0, 0.15)  0 2.6px;
+}
+
+.youtube {
+    display: flex;
+    width: 17%;
+    height: 30px;
+    justify-content: space-evenly;
 }
 
 .history-content {

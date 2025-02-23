@@ -51,10 +51,14 @@ useEffect(() => {
                 <div className="history">
                     <div className="history-lable">
                         <div className="history-title">My Notes</div>
-                        <div className="all-notes">
+                        <div className="youtube">
+                            <img src={assets.youtube_icon}></img>
+                            <input type='text'></input>
+                        </div>
+                        <a href='/live-transcription'><div className="all-notes">
                             View All
                             <img src={assets.send_icon}></img>
-                        </div>
+                        </div></a>
                     </div>
                     <div className="history-content">
                         <div className="catagory">
