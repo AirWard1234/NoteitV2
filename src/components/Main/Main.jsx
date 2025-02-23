@@ -55,10 +55,10 @@ useEffect(() => {
                             <img src={assets.youtube_icon}></img>
                             <input type='text'></input>
                         </div>
-                        <a href='/live-transcription'><div className="all-notes">
+                        <div className="all-notes">
                             View All
                             <img src={assets.send_icon}></img>
-                        </div></a>
+                        </div>
                     </div>
                     <div className="history-content">
                         <div className="catagory">

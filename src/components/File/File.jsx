@@ -24,7 +24,7 @@ const File = () => {
     </div>
     <div className="lower">
         <a href='/'><div className="back">BACK</div></a>
-        <button type='button'>CARDS</button>
+        <a href='/'><div className="flash">CARDS</div></a>
     </div>
     </div>
 
